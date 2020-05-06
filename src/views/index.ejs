@@ -8,13 +8,7 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/add" method ="POST">
-                            <!-- <div class="form-group">
-                                <input type="text" name = "nProyectos" placeholder="Ingrese numero de proyectos" class ="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name = "nCriterios" placeholder="Ingrese numero de criterios" class ="form-control">
-                            </div> -->
+                        <form action="/add" method ="POST" class ="mb-4">
                             <div class="form-group">
                                 <input type="text" name = "proyecto" placeholder="Ingrese proyecto" class ="form-control">
                             </div>
@@ -25,62 +19,63 @@
                                 <input type="text" name = "porcentajeCriterio" placeholder="Ingrese porcentaje" class ="form-control">
                             </div>
                             <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
-                           <a href="/ordenar" class ="btn btn-primary btn-block">Ordenar Proyectos</a>
+                            <a href="/ordenar" class ="btn btn-primary btn-block  mt-4 ">Ordenar Proyectos</a>
                         </form>
                     </div> <!-- Fin de card-body -->
                 </div> <!-- Fin de card -->
             </div> <!-- Fin de col-md-5 -->
+            
             <!-- LIST -->
             <div class="col-md-7">
-                <h1>Proyectos</h1>
+                <h1 class ="text-center">Proyectos</h1>
                 <table class ="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Numero</th>
-                            <th>Proyecto</th>
-                            <th>Extras</th>
+                            <th class ="text-center">Numero</th>
+                            <th class ="text-center">Proyecto</th>
+                            <th class ="text-center">Extras</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for(var i = 0; i < tasks.length; i++) { %>
                             <tr>
-                                <td><%= i + 1%></td>
-                                <td><%=  tasks[i].proyecto %></td>
-                                <td cols = ""> 
-                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Delete</a>
-                                    <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Edit</a>
+                                <td class ="text-center"><%= i + 1%></td>
+                                <td class ="text-center"><%=  tasks[i].proyecto %></td>
+                                <td class ="text-center" > 
+                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Eliminar</a>
+                                    <a href="/edit2/<%= tasks[i]._id %>" class ="btn btn-info">Editar</a>
                                 </td>
                             </tr>
                         <% } %>
                     </tbody>
                 </table>
-                <h1>Criterios</h1>
+                <h1 class ="text-center">Criterios</h1>
                 <table class ="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Numero</th>
-                            <th>Criterio</th>
-                            <th>Porcentaje del criterio</th>
-                            <th>Extras</th>
+                            <th class ="text-center">Numero</th>
+                            <th class ="text-center">Criterio</th>
+                            <th class ="text-center">Porcentaje del criterio</th>
+                            <th class ="text-center">Extras</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for(var i = 0; i < tasks.length; i++) { %>
                             <tr>
-                                <td><%= i + 1%></td>
-                                <td><%=  tasks[i].criterio%></td>
-                                <td><%=  tasks[i].porcentajeCriterio%></td>
+                                <td class ="text-center"><%= i + 1%></td>
+                                <td class ="text-center"><%=  tasks[i].criterio%></td>
+                                <td class ="text-center"><%=  tasks[i].porcentajeCriterio%></td>
                                 <td cols = ""> 
                                     <!-- <a href="/turn/<%= tasks[i]._id%>" class ="btn <%= tasks[i].status ? 'btn-success': 'btn-dark' %>">
                                         Done
                                     </a> -->
-                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Delete</a>
-                                    <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Edit</a>
+                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Eliminar</a>
+                                    <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Editar</a>
                                 </td>
                             </tr>
                         <% } %>
                     </tbody>
-
+                    </table>
             </div> <!-- Fin de col-md-7 -->
         </div> <!-- Fin de row -->
 
