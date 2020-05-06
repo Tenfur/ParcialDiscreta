@@ -1,0 +1,88 @@
+<%- include("partials/header.ejs") %>
+    <nav class ="navbar navbar-dark bg-dark mb-4">
+        <a href="/" class ="navbar-brand">Trabajo Parcial de Discreta</a>
+    </nav>    
+    <div class="container">
+        <div class="row">
+            <!-- FORM -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method ="POST">
+                            <!-- <div class="form-group">
+                                <input type="text" name = "nProyectos" placeholder="Ingrese numero de proyectos" class ="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name = "nCriterios" placeholder="Ingrese numero de criterios" class ="form-control">
+                            </div> -->
+                            <div class="form-group">
+                                <input type="text" name = "proyecto" placeholder="Ingrese proyecto" class ="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="criterio" cols="80" class ="form-control" placeholder="Ingrese indice de proyecto"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name = "porcentajeCriterio" placeholder="Ingrese porcentaje" class ="form-control">
+                            </div>
+                            <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
+                           <a href="/ordenar" class ="btn btn-primary btn-block">Ordenar Proyectos</a>
+                        </form>
+                    </div> <!-- Fin de card-body -->
+                </div> <!-- Fin de card -->
+            </div> <!-- Fin de col-md-5 -->
+            <!-- LIST -->
+            <div class="col-md-7">
+                <h1>Proyectos</h1>
+                <table class ="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Proyecto</th>
+                            <th>Extras</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1%></td>
+                                <td><%=  tasks[i].proyecto %></td>
+                                <td cols = ""> 
+                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Delete</a>
+                                    <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Edit</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                <h1>Criterios</h1>
+                <table class ="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Criterio</th>
+                            <th>Porcentaje del criterio</th>
+                            <th>Extras</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1%></td>
+                                <td><%=  tasks[i].criterio%></td>
+                                <td><%=  tasks[i].porcentajeCriterio%></td>
+                                <td cols = ""> 
+                                    <!-- <a href="/turn/<%= tasks[i]._id%>" class ="btn <%= tasks[i].status ? 'btn-success': 'btn-dark' %>">
+                                        Done
+                                    </a> -->
+                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Delete</a>
+                                    <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Edit</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+
+            </div> <!-- Fin de col-md-7 -->
+        </div> <!-- Fin de row -->
+
+    </div> <!--Fin de container-->
+<%- include("partials/footer.ejs") %>

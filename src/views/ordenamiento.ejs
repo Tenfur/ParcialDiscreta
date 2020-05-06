@@ -1,0 +1,120 @@
+<%- include("partials/header.ejs") %>
+    <nav class ="navbar navbar-dark bg-dark mb-4">
+        <a href="/" class ="navbar-brand">Trabajo Parcial de Discreta</a>
+    </nav>  
+    <div class="container">
+        <div class="row">
+            <!-- LIST -->
+            <div class="col-md-7">
+                <h1>Proyectos</h1>
+                <table class ="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Proyecto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1%></td>
+                                <td><%=  tasks[i].proyecto %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                <h1>Criterios</h1>
+                <table class ="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Criterio</th>
+                            <th>Porcentaje del criterio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1%></td>
+                                <td><%=  tasks[i].criterio%></td>
+                                <td><%=  tasks[i].porcentajeCriterio%></td>
+                            </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+                <p>
+                    <!-- VARIABLES-->
+                    <%var x = 0; %> <!--Se usa en la prueba de porcentajes (Antes de los FOR)-->
+                    <%let texto %> <!--Guarda el criterio (Se usa en el FOR 1)-->
+                    <%var contador %> <!--Guarda la cantidad de texto que tiene la variable texto (Se usa en el FOR 1)-->
+                    <%var aux %> <!-- Suma la letra con el porcentaje (Se usa en el FOR 2) -->
+                    <%var aux2 = 0 %> <!-- Me ayuda a guardar el valor del arreglo de criterios  y para cortarlo (Se usa en el FOR 3) -->
+                    <%var aux3 %> <!-- Convierte en entero al valor que cortamos usando el aux2 (Se usa en el FOR 3) -->
+                    <%var auxLetras = 0 %> <!-- Me ayuda a guardar la cantidad de letras de cada criterio (Se usa en el FOR 3) -->
+                    <%var arreglo = []%> <!-- Agregamos cada criterio al arreglo (Se usa en el FOR 2) -->
+                    <%var arregloCriterios = [] %>
+                    <%var maximoCriterioNumero = 0 %>
+                    <%var maximoCriterio %>
+                    <% var temp %>
+                    <% var arregloAbecedario = ["A", "B", "C", "D", "E", "F", "G", "H"] %>
+
+                     <!--Algoritmo-->
+                     <%= "Criterios multiplicados con los porcentajes: " %>
+                    </br>
+                     <% for(var i = 0; i < tasks.length; ++i) { %>
+                        <% texto = tasks[i].criterio %>  <!--Guardamos el criterio en la variable-->
+                        <% texto = texto.split("") %> <!--Pasamos la variable a un arreglo de caracteres-->
+                        <% contador = texto.length %>
+                            <% for(var j = 0; j < texto.length; j++) { %>
+                                    <% aux = texto[j] +(contador * tasks[i].porcentajeCriterio) %>
+                                    <%= aux %>
+                                    <% arreglo.push(aux) %>
+                                    <% --contador %>
+                            <% } %> <!-- Final del segundo FOR-->
+                            </br>
+                    <% } %> <!--Final del primer FOR-->
+
+                    <!-- Calculando el máximo de criterios-->
+                    <%= "El mayor numero de criterios es: " %>
+                    <% for(var i = 0; i < tasks.length; ++i) { %> 
+                        <% var aux = tasks[i].criterio.length %>
+                        <% arregloCriterios.push(aux) %>
+                    <% } %> <!--Final del FOR que guarda todos los numeros de criterios en un  arreglo-->
+                    <% arregloCriterios.sort((a,b) => a - b) %> <!--Ordena el arreglo  de menor a mayor-->
+                    <% for(var i = 0; i < arregloCriterios.length; ++i) {  %>
+                        <% maximoCriterioNumero = arregloCriterios[i] %>
+                    <% } %> <!-- Final del FOR que calcula el mayor criterio-->
+                    <%= maximoCriterioNumero %>
+                    <% for(var i = 0; i < tasks.length; ++i) { %>
+                        <% if(maximoCriterioNumero == tasks[i].criterio.length){ %>
+                                <%maximoCriterio = tasks[i].criterio %>
+                        <%} %>
+                    <% } %>
+                    </br>
+                   <!--Algoritmo final-->
+                   <%temp = maximoCriterio.split("") %>
+                    <%= "Proyectos:" %>  <%= temp %>
+                    </br>
+                   <%= "Porcentajes finales:" %>
+                    </br>
+                   <% var auxiliar = 0 %>
+                   <% for(var i = 0; i < temp.length; i++) { %>
+                    <%auxiliar = 0 %>
+                    <% for(var j = 0; j < arreglo.length; j++){ %>
+                            <% var aux = arreglo[j] %>
+                            <% var auxLetras = arreglo[j].length %>
+                            <% if (aux.includes(temp[i])){ %>
+                                <% aux = aux.slice(1,auxLetras) %>
+                                <% aux3 = parseInt(aux) %>
+                                <% auxiliar += aux3 %>
+                            <% } %>
+                        <% } %> <!-- Fin del FOR-->
+                        <%= auxiliar %>
+               <% } %> <!--Fin del FOR-->               
+                    </br>                
+                </p>
+            </div> <!-- Fin de col-md-7 -->
+        </div> <!-- Fin de row -->
+    </div> <!--Fin de container-->
+<%- include("partials/footer.ejs") %>
