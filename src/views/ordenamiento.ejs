@@ -44,86 +44,128 @@
                     </tbody>
                 </table>
                 <p>
-                    <!-- VARIABLES-->
-                    <% if(tasks.length > 0) { %>
-                        <%var x = 0; %> <!--Se usa en la prueba de porcentajes (Antes de los FOR)-->
-                        <%let texto %> <!--Guarda el criterio (Se usa en el FOR 1)-->
-                        <%var contador %> <!--Guarda la cantidad de texto que tiene la variable texto (Se usa en el FOR 1)-->
-                        <%var aux %> <!-- Suma la letra con el porcentaje (Se usa en el FOR 2) -->
-                        <%var aux2 = 0 %> <!-- Me ayuda a guardar el valor del arreglo de criterios  y para cortarlo (Se usa en el FOR 3) -->
-                        <%var aux3 %> <!-- Convierte en entero al valor que cortamos usando el aux2 (Se usa en el FOR 3) -->
-                        <%var auxLetras = 0 %> <!-- Me ayuda a guardar la cantidad de letras de cada criterio (Se usa en el FOR 3) -->
-                        <%var arreglo = []%> <!-- Agregamos cada criterio al arreglo (Se usa en el FOR 2) -->
-                        <%var arregloCriterios = [] %>
-                        <%var maximoCriterioNumero = 0 %>
-                        <%var maximoCriterio %>
-                        <%var temp %>
-                        <%var arregloDeValoresFinales =[] %>
-                        <%var arreglodeValoresFinalesConLetras = [] %>
 
-                        <!--Algoritmo-->
-                        <!-- <div class ="d-none"> -->
-                        <%= "Criterios multiplicados con los porcentajes: " %>
-                        </br>  
-                        <% for(var i = 0; i < tasks.length; ++i) { %>
-                            <% texto = tasks[i].criterio %>  <!--Guardamos el criterio en la variable-->
-                            <% texto = texto.split("") %> <!--Pasamos la variable a un arreglo de caracteres-->
-                            <% contador = texto.length %>
-                                <% for(var j = 0; j < texto.length; j++) { %>
-                                        <% aux = texto[j] +(contador * tasks[i].porcentajeCriterio) %>
-                                        <%= aux %>
-                                        <% arreglo.push(aux) %>
-                                        <% --contador %>
-                                <% } %> <!-- Final del segundo FOR-->
-                                </br>
-                        <% } %> <!--Final del primer FOR-->
+                                                                 <!-- PROCESO DEL ALGORITMO -->
+                    <!-- 1) Separamos cada criterio (ABC) asignadole un numero de acuerdo a su posicion (3A 2B 1C) y después lo multiplicamos con el porcentaje ingresado -->
+                    <!--Si el usuario ingresó un criterio ABC con un porcentaje de 30 % de importancia-->
+                    <!--Quedaría de esta manera: A90 B60 C30-->
+                    <!--Cada valor se guardará en un arreglo que se usará después-->
+
+                    <!-- 2) Necesitamos hallar el criterio con mayor numero de caracteres y obtener su numero de caracteres  -->
+                    <!-- Con el primer FOR conseguimos el tamaño de cada criterio y cada tamaño lo guardaremos en un arreglo-->
+                    <!-- A continuación ordenaremos el arreglo de menor a mayor -->
+                    <!-- Con el segundo FOR recorremos el arreglo ordenado y de esa forma el último valor del arreglo se guardaría en una variable llamada maximoCriterioNumero-->
+                    <!-- Una vez obtenido el mayor valor, usaremos un tercer FOR para comparar cada  tamaño de cada criterio con la variable maximoCriterioNumero
+                        y de esa forma conseguiremos el criterio con mayor numero de caracteres que se guardará en la variable maximoCriterio -->
+
+                    <!-- 3) La variable maximoCriterio se convertirá en un arreglo que se guardará en la variable temp para que podamos evaluar todos los criterios con cada letra -->
+                    <!-- Se crearán dos variables para apoyarnos en las operaciones que se realizarán  -->
+                    <!-- Creamos dos for anidados, el primero va a recorrer el arreglo temp y el segundo va a recorrer cada criterio-->
+                    <!-- La variables aux y aux2 guardarán al criterio que corresponde respecto al arreglo-->
+                    <!-- La auxiliarSuprema guardará el tamaño del criterio-->
+                    <!-- Si la variable aux incluye la letra que corresponde al primer for, retornará true-->
+                    <!-- Si el condicional retorna true, el criterio será cortado para que se pueda conseguir el numero, después ese numero se convertira en entero y se sumara con la variable auxiliar -->
+                    <!-- La variable auxiliar2 tomará la letra y la suma-->
+                    <!-- Después de esto, los arreglos registrarán a la sumatotal que es entero y a la sumatotal con letra-->
+
+
+                        <!-- VARIABLES-->
+                        <% if(tasks.length > 0) { %>
+                            <%var x = 0; %> <!--Se usa en la prueba de porcentajes (Antes de los FOR)-->
+                            <%let texto %> <!--Guarda el criterio (Se usa en el FOR 1)-->
+                            <%var contador %> <!--Guarda la cantidad de texto que tiene la variable texto (Se usa en el FOR 1)-->
+                            <%var aux %> <!-- Suma la letra con el porcentaje (Se usa en el FOR 2) -->
+                            <%var aux2 = 0 %> <!-- Me ayuda a guardar el valor del arreglo de criterios  y para cortarlo (Se usa en el FOR 3) -->
+                            <%var aux3 %> <!-- Convierte en entero al valor que cortamos usando el aux2 (Se usa en el FOR 3) -->
+                            <%var auxLetras = 0 %> <!-- Me ayuda a guardar la cantidad de letras de cada criterio (Se usa en el FOR 3) -->
+                            <%var arreglo = []%> <!-- Agregamos cada criterio al arreglo (Se usa en el FOR 2) -->
+                            <%var arregloCriterios = [] %>
+                            <%var maximoCriterioNumero = 0 %>
+                            <%var maximoCriterio %>
+                            <%var temp %>
+                            <%var arregloDeValoresFinales =[] %>
+                            <%var arreglodeValoresFinalesConLetras = [] %>
+
+                        <!----------------------------------------PASO UNO--------------------------------------->
+                            <!-- <div class ="d-none"> -->
+                            <%= "Criterios multiplicados con los porcentajes: " %>
+                            </br>  
+                            <% for(var i = 0; i < tasks.length; ++i) { %>
+                                <% texto = tasks[i].criterio %>  <!--Guardamos el criterio en la variable-->
+                                <% texto = texto.split("") %> <!--Pasamos la variable a un arreglo de caracteres-->
+                                <% contador = texto.length %>
+                                    <% for(var j = 0; j < texto.length; j++) { %>
+                                            <% aux = texto[j] +(contador * tasks[i].porcentajeCriterio) %>
+                                            <%= aux %>
+                                            <% arreglo.push(aux) %>
+                                            <% --contador %>
+                                    <% } %> <!-- Final del segundo FOR-->
+                                    </br>
+                            <% } %> <!--Final del primer FOR-->
+                        <!----------------------------------------TERMINA EL PASO UNO---------------------------->
+
+                        
+                        <!----------------------------------------PASO DOS--------------------------------------->
                         <!-- Calculando el máximo de criterios-->
-                        <%= "El mayor numero de criterios es: " %>
-                        <% for(var i = 0; i < tasks.length; ++i) { %> 
-                            <% var aux = tasks[i].criterio.length %>
-                            <% arregloCriterios.push(aux) %>
-                        <% } %> <!--Final del FOR que guarda todos los numeros de criterios en un  arreglo-->
-                        <% arregloCriterios.sort((a,b) => a - b) %> <!--Ordena el arreglo  de menor a mayor-->
-                        <% for(var i = 0; i < arregloCriterios.length; ++i) {  %>
-                            <% maximoCriterioNumero = arregloCriterios[i] %>
-                        <% } %> <!-- Final del FOR que calcula el mayor criterio-->
-                        <%= maximoCriterioNumero %>
-                        <% for(var i = 0; i < tasks.length; ++i) { %>
-                            <% if(maximoCriterioNumero == tasks[i].criterio.length){ %>
-                                    <%maximoCriterio = tasks[i].criterio %>
-                            <%} %>
-                        <% } %>
-                        </br>
-                    <!--Algoritmo final--> 
-                    <%temp = maximoCriterio.split("") %> <!--Convertimos en un arreglo al criterio más largo -->
-                        <%= "Proyectos:" %>  <%= temp %> <!--Se iprime el arreglo-->
-                    <!-- </div> -->
-                    <% var auxiliar = 0 %> <!--La variable auxiliar que alamancera las sumas totales se le asigna 0-->
-                    <% var auxiliar2 = 0 %>
-                    <% for(var i = 0; i < temp.length; i++) { %>
-                        <%auxiliar = 0 %> <!--La variabel auxiliar se actualiza a cero para la siguiente suma-->
-                        <%auxiliar2 = 0%>
-                        <% for(var j = 0; j < arreglo.length; j++){ %>
-                                <% var aux = arreglo[j] %> <!-- A60-->
-                                <% var auxLetras = arreglo[j].length %> 
-                                <% if (aux.includes(temp[i])){ %>
-                                    <% aux = aux.slice(1,auxLetras) %> <!--C20-->   F
-                                    <% aux3 = parseInt(aux) %>
-                                    <% auxiliar += aux3 %>
-                                    <% auxiliar2 =  temp[i] + auxiliar %>
-                                <% } %>
-                            <% } %> <!-- Fin del FOR-->
-                            <% arregloDeValoresFinales.push(auxiliar)%>
-                            <% arreglodeValoresFinalesConLetras.push(auxiliar2) %>
-                    <% } %> <!--Fin del FOR-->    
+                            <%= "El mayor numero de criterios es: " %>
+
+                            <% for(var i = 0; i < tasks.length; ++i) { %> 
+                                <% var aux = tasks[i].criterio.length %>
+                                <% arregloCriterios.push(aux) %>
+                            <% } %> <!--Final del FOR que guarda todos los tamaños de los criterios en un  arreglo-->
+
+                            <% arregloCriterios.sort((a,b) => a - b) %> <!--Ordena el arreglo  de menor a mayor-->
+
+                            <% for(var i = 0; i < arregloCriterios.length; ++i) {  %>
+                                <% maximoCriterioNumero = arregloCriterios[i] %>
+                            <% } %> <!-- Final del FOR que calcula el mayor criterio-->
+
+                            <%= maximoCriterioNumero %>
+                            <% for(var i = 0; i < tasks.length; ++i) { %>
+                                <% if(maximoCriterioNumero == tasks[i].criterio.length){ %>
+                                        <%maximoCriterio = tasks[i].criterio %>
+                                <%} %>
+                            <% } %> <!-- En este FOR conseguimos al criterio con mayor numero de caracteres -->
+                            </br>
+
+                        <!----------------------------------------TERMINA EL PASO DOS---------------------------->
+
+                        <!----------------------------------------PASO TRES-------------------------------------->
+                                            
+                            <%temp = maximoCriterio.split("") %> <!--Convertimos en un arreglo al criterio más largo -->
+                                <%= "Proyectos:" %>  <%= temp %> <!--Se iprime el arreglo-->
+                            <!-- </div> -->
+                            <% var auxiliar = 0 %> <!--La variable auxiliar que alamancera las sumas totales se le asigna 0-->
+                            <% var auxiliar2 = 0 %>
+                            <% for(var i = 0; i < temp.length; i++) { %>
+                                <%auxiliar = 0 %> <!--La variabel auxiliar se actualiza a cero para la siguiente suma-->
+                                <%auxiliar2 = 0%>
+                                <% for(var j = 0; j < arreglo.length; j++){ %>
+                                        <% var aux = arreglo[j] %> 
+                                        <% var auxLetras = arreglo[j].length %> 
+                                        <% if (aux.includes(temp[i])){ %>
+                                            <% aux = aux.slice(1,auxLetras) %>  <!--Se corta el criterio para conseguir el numeroo-->
+                                            <% aux3 = parseInt(aux) %>  <!-- Convertimos en entero al numero que está en string -->
+                                            <% auxiliar += aux3 %> <!-- auxiliar se sumará con el entero-->
+                                            <% auxiliar2 =  temp[i] + auxiliar %>
+                                        <% } %>
+                                    <% } %> <!-- Fin del FOR-->
+                                    <% arregloDeValoresFinales.push(auxiliar)%>
+                                    <% arreglodeValoresFinalesConLetras.push(auxiliar2) %>
+                            <% } %> <!--Fin del FOR-->    
+
+                    <!--------------------------------------------TERMINA EL PASO TRES--------------------------->
+
+
+                    <!--------------------------------------------MOSTRAMOS DATOSS EN UNA TABLA--------------------->
 
                     <h1 class ="text-center">Ordenamiento de los proyectos</h1>
                     <!-- <div class ="d-none"> -->
                         <%= arregloDeValoresFinales %>
                         </br>
-                        <% arregloDeValoresFinales.sort((a,b) => a - b) %>     
-                        <% arregloDeValoresFinales.reverse() %>
-                        <%= arregloDeValoresFinales%>    
+                        <% arregloDeValoresFinales.sort((a,b) => a - b) %>    <!--Se ordena el arreglo de valores finales de menor a mayor -->
+                        <% arregloDeValoresFinales.reverse() %>               <!-- Se invierte el arreglo -->
+                        <%= arregloDeValoresFinales%>       
                         </br>
                         <%= arreglodeValoresFinalesConLetras %>  
                     <!-- </div> -->
@@ -139,20 +181,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(var i = 0; i < arregloDeValoresFinales.length; i++) { %>
-                                <% for(var j = 0; j < arreglodeValoresFinalesConLetras.length; j++){ %>
+                            <% for(var i = 0; i < arregloDeValoresFinales.length; i++) { %>                     <!-- El arregloDeValoresFinales tiene 410 y el arregloDeValoresFinalesConletras tiene A410 -->                                                                                                                                    -->
+                                <% for(var j = 0; j < arreglodeValoresFinalesConLetras.length; j++){ %>             
                                     <% var  aux = arreglodeValoresFinalesConLetras[j]  %>
                                     <% var aux2 = arreglodeValoresFinalesConLetras[j] %>
-                                    <% auxiliarSuprema = arreglodeValoresFinalesConLetras[j].length %>
+                                    <% auxiliarSuprema = arreglodeValoresFinalesConLetras[j].length %> <!-- Conseguimos el tamaño del elemento que corresponde al arregloDeValoresFinalesConLetras -->
                                     <% aux = aux.slice(0,1) %> <!--La letra-->
-                                    <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--E   l numero-->
+                                    <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--El numero-->
                                     <% aux3 = parseInt(aux2) %>
-                                    <% if (aux3 == arregloDeValoresFinales[i]) { %>
-                                          <%auxi =  aux %>
+                                    <% if (aux3 == arregloDeValoresFinales[i]) { %> <!--Si el numero obtenido es igual al primer numero, se imprimirá la letra que le corresponde  -->
+                                          <%auxi =  aux %> <!-- Se asigna la letra a la variable auxi -->
                                     <% } %> <!-- Final del condicional-->
                                  <% } %> <!--Final del FOR-->
                                 <tr>
-                                    <td class ="text-center"><%= auxi %></td>
+                                    <td class ="text-center"><%= auxi %></td> <!-- Se imprime la letra-->
                                     <td class ="text-center"><%= arregloDeValoresFinales[i] %></td>
                                 </tr>
                             <% } %>

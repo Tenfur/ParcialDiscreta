@@ -15,12 +15,12 @@ const indexRoutes = require("./routes/index") //Llamamos la ruta que el usuario 
 
 //Settings
 app.set("port", 3000);
-app.set("views", path.join(__dirname, "views")); //No me acuerdo bien xd
+app.set("views", path.join(__dirname, "views")); 
 app.set("view engine", "ejs");
 
 //Middlewares
 app.use(morgan("dev"));  
-app.use(express.urlencoded({extended: false})); //No me acuerdo bien xd 
+app.use(express.urlencoded({extended: false})); 
 
 //Routes
 app.use("/", indexRoutes); //Usamos la ruta importada

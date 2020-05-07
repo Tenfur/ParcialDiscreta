@@ -5,7 +5,7 @@ const TaskSchema = new Schema({ //Creamos la estructura del documento
     proyecto: String,
     criterio: String,
     porcentajeCriterio: Number,
-    status: { //No me acuerdo xd 
+    status: { 
         type: Boolean,
         default: false
     }

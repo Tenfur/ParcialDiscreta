@@ -1,7 +1,6 @@
 const express = require("express"); //Importamos el módulo express para hacer uso de su función Router
 const router = express.Router(); //Al llamar al módulo exprees, nos retorna un objeto. Por lo tanto, utilizamos el método Router para poder utilizar las rutas
 const Task = require("../models/task"); //Importamos la colección tasks que tiene los nombres de los proyectos
-// const Task2 = require("../models/task2"); //Importamos la colección tasks2 que contiene los criterios y porcentajes
 
 router.get("/", async (req, res) =>{ //Esta ruta llama a la página principal, que sería el index.ejs
     const tasks = await  Task.find();
@@ -15,12 +14,6 @@ router.post("/add", async (req, res) =>{  //Esta ruta sube los nuevos datos ingr
     await task.save();
     res.redirect("/");
 }); 
-
-// router.post("/add2", async (req, res) =>{  //Esta ruta sube los nuevos datos ingresados por el usuario
-//     const task = new Task2(req.body);
-//     await task.save();
-//     res.redirect("/");
-// }); 
 
 router.get("/ordenar", async(req, res)=>{ //Esta ruta llamada a la página ordenamiento, que sería el ordenamiento.ejs
     const tasks = await  Task.find();
