@@ -21,6 +21,20 @@
                             <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
                             <a href="/ordenar" class ="btn btn-primary btn-block  mt-4 ">Ordenar Proyectos</a>
                         </form>
+
+                        <!-- <form action="/add2" method ="POST" class ="mb-4">
+                            <div class="form-group">
+                                <input type="text" name = "proyecto" placeholder="Ingrese proyecto" class ="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="criterio" cols="80" class ="form-control" placeholder="Ingrese indice de proyecto"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name = "porcentajeCriterio" placeholder="Ingrese porcentaje" class ="form-control">
+                            </div>
+                            <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
+                            <a href="/ordenar" class ="btn btn-primary btn-block  mt-4 ">Ordenar Proyectos</a>
+                        </form> -->
                     </div> <!-- Fin de card-body -->
                 </div> <!-- Fin de card -->
             </div> <!-- Fin de col-md-5 -->
@@ -66,9 +80,6 @@
                                 <td class ="text-center"><%=  tasks[i].criterio%></td>
                                 <td class ="text-center"><%=  tasks[i].porcentajeCriterio%></td>
                                 <td cols = ""> 
-                                    <!-- <a href="/turn/<%= tasks[i]._id%>" class ="btn <%= tasks[i].status ? 'btn-success': 'btn-dark' %>">
-                                        Done
-                                    </a> -->
                                     <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Eliminar</a>
                                     <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Editar</a>
                                 </td>

@@ -37,7 +37,7 @@
                             <tr>
                                 <td class ="text-center"><%= i + 1%></td>
                                 <td class ="text-center"><%=  tasks[i].criterio%></td>
-                                <td class ="text-center"><%=  tasks[i].porcentajeCriterio%></td>
+                                <td class ="text-center"><%=  tasks[i].porcentajeCriterio%> <%= "%" %></td>
                             </tr>
                         <% } %>
 
@@ -62,9 +62,9 @@
                         <%var arreglodeValoresFinalesConLetras = [] %>
 
                         <!--Algoritmo-->
-                        <div class ="d-none">
+                        <!-- <div class ="d-none"> -->
                         <%= "Criterios multiplicados con los porcentajes: " %>
-                        </br>
+                        </br>  
                         <% for(var i = 0; i < tasks.length; ++i) { %>
                             <% texto = tasks[i].criterio %>  <!--Guardamos el criterio en la variable-->
                             <% texto = texto.split("") %> <!--Pasamos la variable a un arreglo de caracteres-->
@@ -77,7 +77,6 @@
                                 <% } %> <!-- Final del segundo FOR-->
                                 </br>
                         <% } %> <!--Final del primer FOR-->
-
                         <!-- Calculando el máximo de criterios-->
                         <%= "El mayor numero de criterios es: " %>
                         <% for(var i = 0; i < tasks.length; ++i) { %> 
@@ -95,20 +94,20 @@
                             <%} %>
                         <% } %>
                         </br>
-                    <!--Algoritmo final-->
+                    <!--Algoritmo final--> 
                     <%temp = maximoCriterio.split("") %> <!--Convertimos en un arreglo al criterio más largo -->
                         <%= "Proyectos:" %>  <%= temp %> <!--Se iprime el arreglo-->
-                    </div>
+                    <!-- </div> -->
                     <% var auxiliar = 0 %> <!--La variable auxiliar que alamancera las sumas totales se le asigna 0-->
                     <% var auxiliar2 = 0 %>
                     <% for(var i = 0; i < temp.length; i++) { %>
                         <%auxiliar = 0 %> <!--La variabel auxiliar se actualiza a cero para la siguiente suma-->
                         <%auxiliar2 = 0%>
                         <% for(var j = 0; j < arreglo.length; j++){ %>
-                                <% var aux = arreglo[j] %>
-                                <% var auxLetras = arreglo[j].length %>
+                                <% var aux = arreglo[j] %> <!-- A60-->
+                                <% var auxLetras = arreglo[j].length %> 
                                 <% if (aux.includes(temp[i])){ %>
-                                    <% aux = aux.slice(1,auxLetras) %>
+                                    <% aux = aux.slice(1,auxLetras) %> <!--C20-->   F
                                     <% aux3 = parseInt(aux) %>
                                     <% auxiliar += aux3 %>
                                     <% auxiliar2 =  temp[i] + auxiliar %>
@@ -119,7 +118,7 @@
                     <% } %> <!--Fin del FOR-->    
 
                     <h1 class ="text-center">Ordenamiento de los proyectos</h1>
-                    <div class ="d-none">
+                    <!-- <div class ="d-none"> -->
                         <%= arregloDeValoresFinales %>
                         </br>
                         <% arregloDeValoresFinales.sort((a,b) => a - b) %>     
@@ -127,7 +126,7 @@
                         <%= arregloDeValoresFinales%>    
                         </br>
                         <%= arreglodeValoresFinalesConLetras %>  
-                    </div>
+                    <!-- </div> -->
                     </br>        
                     </br>
                     <% var auxiliarSuprema %>
@@ -169,27 +168,6 @@
             <!-- DIAGRAMA DE HASSE -->
             <div class="col-md-7">
                 <h1 class ="text-center">Diagrama de Hasse</h1>
-                <canvas id = "canvas">
-                    <style>
-                        canvas{
-                            margin-left: 90px;
-                            width: 500px;
-                            height: 500px;
-                            border: 1px solid black;
-                        }
-                    </style>
-                    <script>
-                        var c = document.getElementById("canvas");
-                        var numeroProyectos = document.getElementById("proyectos");
-                        var ctx = c.getContext("2d");
-                        for(var i = 0; i < b; i++){
-                            var x = (Math.random() * 194);
-                            var y = (Math.random() * 120);
-                            ctx.fillRect(x,y,30,30);
-                        }
-                        
-                    </script>
-                </canvas>
             </div>
         </div> <!-- Fin de row -->
     </div> <!--Fin de container-->
