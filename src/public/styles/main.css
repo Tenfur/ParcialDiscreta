@@ -1,0 +1,73 @@
+.imagen{
+    height: 50px;
+    /* width: 30px; */
+    margin: 0 0 0 295px;
+}
+.boton{
+    width: 150px;
+    margin: 0 0 10px 10px;
+}
+.boton2{
+    margin: 0 10px 10px 300px;
+    width: 200px;
+}
+.elementos{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+/* body{
+    background-color: red;
+} */
+.texto{
+    margin: 5px 50px 5px 50px;
+    
+}
+.estilo{
+    width: 1000px;
+    margin: 0 0 0 40px;
+}
+.boton3{
+    text-align: center;
+    width: 300px;
+}
+.boton4{
+    display: flex;
+    justify-content: center;
+}
+.presentacion{
+    margin: 5px 0 5px 170px;
+}
+.boton3{
+    border-radius: 20px;
+}
+.imagenlogo{
+    width: 450px;
+    height: 300px;
+    /* border: 1px solid black; */
+    /* border-radius: 10px; */
+    margin: 0 0 10px 0;
+    /* align-items: center3; */
+}
+.imagenlogo2{
+    display: flex;
+    justify-content: center;
+}
+.titulo{
+    margin: 5px 0 0 0;
+}
+
+.iguales{
+    display: flex;
+}
+.noche{
+    border: 1px solid black;
+}
+.imagenNoche{
+    margin: 0;
+    height: 50px;
+}
+.voltear{
+    display: flex;
+    flex-direction: column-reverse;
+}

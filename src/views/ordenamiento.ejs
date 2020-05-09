@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
     <nav class ="navbar navbar-dark bg-dark mb-4">
-        <a href="/" class ="navbar-brand">Trabajo Parcial de Discreta</a>
+        <a href="/" class ="navbar-brand">Ordenamiento</a>
     </nav>  
     <div class="container">
         <div class="row">
@@ -10,14 +10,15 @@
                 <table class ="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th class ="text-center">Numero</th>
+                            <th class ="text-center">Letra</th>
                             <th class ="text-center">Proyecto</th>
                         </tr>
                     </thead>
+                    <% arregloAbecedario = ["A", "B","C", "D", "E", "F", "G", "H", "I", "J", "k", "L", "M", "N"] %>
                     <tbody>
                         <% for(var i = 0; i < tasks.length; i++) { %>
                             <tr>
-                                <td class ="text-center"><%= i + 1%></td>
+                                <td class ="text-center"><%= arregloAbecedario[i]%></td>
                                 <td class ="text-center"><%=  tasks[i].proyecto %></td>
                             </tr>
                         <% } %>
@@ -85,6 +86,8 @@
                             <%var temp %>
                             <%var arregloDeValoresFinales =[] %>
                             <%var arreglodeValoresFinalesConLetras = [] %>
+                            <%var arregloDeLetrasOrdenadas = [] %>
+                            <%var arregloDeProyectos = [] %>
 
                         <!----------------------------------------PASO UNO--------------------------------------->
                             <!-- <div class ="d-none"> -->
@@ -160,7 +163,7 @@
                     <!--------------------------------------------MOSTRAMOS DATOSS EN UNA TABLA--------------------->
 
                     <h1 class ="text-center">Ordenamiento de los proyectos</h1>
-                    <!-- <div class ="d-none"> -->
+                    <div class ="d-none">
                         <%= arregloDeValoresFinales %>
                         </br>
                         <% arregloDeValoresFinales.sort((a,b) => a - b) %>    <!--Se ordena el arreglo de valores finales de menor a mayor -->
@@ -168,7 +171,7 @@
                         <%= arregloDeValoresFinales%>       
                         </br>
                         <%= arreglodeValoresFinalesConLetras %>  
-                    <!-- </div> -->
+                    </div>
                     </br>        
                     </br>
                     <% var auxiliarSuprema %>
@@ -180,37 +183,103 @@
                                 <th class ="text-center">Importancia</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% for(var i = 0; i < arregloDeValoresFinales.length; i++) { %>                     <!-- El arregloDeValoresFinales tiene 410 y el arregloDeValoresFinalesConletras tiene A410 -->                                                                                                                                    -->
-                                <% for(var j = 0; j < arreglodeValoresFinalesConLetras.length; j++){ %>             
-                                    <% var  aux = arreglodeValoresFinalesConLetras[j]  %>
-                                    <% var aux2 = arreglodeValoresFinalesConLetras[j] %>
-                                    <% auxiliarSuprema = arreglodeValoresFinalesConLetras[j].length %> <!-- Conseguimos el tamaño del elemento que corresponde al arregloDeValoresFinalesConLetras -->
-                                    <% aux = aux.slice(0,1) %> <!--La letra-->
-                                    <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--El numero-->
-                                    <% aux3 = parseInt(aux2) %>
-                                    <% if (aux3 == arregloDeValoresFinales[i]) { %> <!--Si el numero obtenido es igual al primer numero, se imprimirá la letra que le corresponde  -->
-                                          <%auxi =  aux %> <!-- Se asigna la letra a la variable auxi -->
+                        <tbody>                 
+                                                       
+                            <% for(var i = 0; i < arreglodeValoresFinalesConLetras.length; i++) { %>             <!-- El arregloDeValoresFinales tiene 410 y el arregloDeValoresFinalesConletras tiene A410 -->                                                                                                                                    
+                                <% for(var j = 0; j < arreglodeValoresFinalesConLetras.length; j++){ %>         
+                                    <% var  aux1 = arreglodeValoresFinalesConLetras[i]  %>
+                                    <% var aux2 = arreglodeValoresFinalesConLetras[i] %> 
+                                    <% var  aux3 = arreglodeValoresFinalesConLetras[j]  %>
+                                    <% var aux4 = arreglodeValoresFinalesConLetras[j] %> 
+                                    <% auxiliarSuprema = arreglodeValoresFinalesConLetras[i].length %>    <!--Tamaño del valor I-->                <!-- Conseguimos el tamaño del elemento que corresponde al arregloDeValoresFinalesConLetras -->
+                                    <% auxiliarSuprema2 = arreglodeValoresFinalesConLetras[j].length %> <!--Tamaño del valor J-->
+                                    <% aux1 = aux1.slice(0,1) %> <!--La letra   del valor I--> 
+                                    <% aux3 = aux3.slice(0,1) %> <!--La letra del valor J-->
+                                    <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--El numero de I-->
+                                    <% aux4 = aux4.slice(1, auxiliarSuprema2) %> <!--El numero de J-->
+                                    <% auxI = parseInt(aux2) %> <!--Convrtimos en numero al valor de I-->
+                                    <% auxJ = parseInt(aux4) %> <!--Convertimos en numero al valor de J-->
+                                    <% if (auxJ == arregloDeValoresFinales[i]){ %> <!--Si el numero obtenido es igual al primer numero, se imprimirá la letra que le corresponde  -->
+                                        <% if(aux1 == aux3){ %>
+                                          <%auxi = aux %> <!-- Se asigna la letra a la variable auxi -->
+                                          <%arregloDeLetrasOrdenadas.push(aux1) %>
+                                        <% } %>
                                     <% } %> <!-- Final del condicional-->
-                                 <% } %> <!--Final del FOR-->
+                                 <% } %>
                                 <tr>
-                                    <td class ="text-center"><%= auxi %></td> <!-- Se imprime la letra-->
+                                    <td class ="text-center"><%= aux1 %></td> <!-- Se imprime la letra-->
                                     <td class ="text-center"><%= arregloDeValoresFinales[i] %></td>
                                 </tr>
                             <% } %>
     
                         </tbody>
-                    </table>    
-                <% } %>
-
+                    </table>   
+                   
                 </p>
-                <a href="/" class ="btn btn-primary btn-block mb-4">Regresar</a>
+                
             </div> <!-- Fin de col-md-7 -->
-
+   
+             <%arregloDeLetrasOrdenadas.reverse() %>
             <!-- DIAGRAMA DE HASSE -->
-            <div class="col-md-7">
-                <h1 class ="text-center">Diagrama de Hasse</h1>
+            <% var num = arregloDeLetrasOrdenadas.length - 1 %>
+            <% var ultimoAux = num %>
+            <div class="col-md-7">  
+   
+        
+            <h1 class ="text-center">Diagrama de Hasse</h1> 
+                <% for (var i = 0; i < arregloDeLetrasOrdenadas.length; i++) { %>
+                    <%var ultimoComparado %>
+                        <% for(var j = i; j < arregloDeLetrasOrdenadas.length; j++) { %>
+                            <% if (arregloDeValoresFinales[i] == arregloDeValoresFinales[j]) { %>
+                                <h1 class ="text-center mb-0 "> <%= arregloDeLetrasOrdenadas[j] %></h1>
+                                <% ultimoComparado = j %>
+                            <%} %>
+                        <%} %>
+                    <% i = ultimoComparado %>
+                    <% if(ultimoAux != i) { %>
+                        <img src="/images/linea.png" class ="imagen">
+                <% } %>
+               <% } %>
+
+               <!-- for (int i = 0; i < proyectofinal.size(); i++) {                                                       
+                int ultimo_comparado;
+                for (int j = i; j < proyectofinal.size(); j++) {
+                    if (proyectofinal[i].Getpeso_puntaje() == proyectofinal[j].Getpeso_puntaje()) {
+                        cout << proyectofinal[j].GetNombre();
+                        ultimo_comparado = j;
+                    }
+                }
+                cout << endl;
+                i = ultimo_comparado;
+                if (i != proyectofinal.size() - 1) {
+                    cout << "|" << endl;
+                }
+            } -->
+                    <!-- [7:32 p. m., 8/5/2020] Juan De Dios: El for de i recorre el arreglo de proyectos
+            [7:32 p. m., 8/5/2020] Juan De Dios: Cuando es 0 seria A por ejemplo
+            [7:32 p. m., 8/5/2020] Juan De Dios: El de j también recorre ese mismo arreglo
+        [7:32 p. m., 8/5/2020] Juan De Dios: Y si el i y el de j son iguales
+        [7:32 p. m., 8/5/2020] Juan De Dios: Me los imprime en la misma línea
+        [7:33 p. m., 8/5/2020] Juan De Dios: Y guarda la posición del último elemento igual
+        [7:33 p. m., 8/5/2020] Juan De Dios: Luego esa posición la asigna a i
+        [7:34 p. m., 8/5/2020] Juan De Dios: Para que empeze en el último elemento que fue igual
+        [7:34 p. m., 8/5/2020] Juan De Dios: Empiece* -->
+
+
+
+
+            
+
+            
+               
+
+               
+
+                <% } %>
+                <!-- <a href="/index" class ="btn btn-primary btn-block mb-4">Regresar</a> -->
+                <script src = "javascript/main.js"></script>
             </div>
         </div> <!-- Fin de row -->
     </div> <!--Fin de container-->
+    <a href="/index" class ="btn btn-primary boton2">Regresar</a>
 <%- include("partials/footer.ejs") %>
