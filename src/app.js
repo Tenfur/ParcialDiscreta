@@ -9,7 +9,7 @@ http.createServer(app);
 const server = http.createServer(app);
 
 //Connecting to db
-mongoose.connect("mongodb://mongodb+srv://paolo:<paolo123>@cluster0-ivsqq.mongodb.net/test?retryWrites=true&w=majority") 
+mongoose.connect("mongodb://mongodb+srv://paolo:paolo123@cluster0-ivsqq.mongodb.net/test?retryWrites=true&w=majority") 
     .then(db => console.log("DB CONNECTED"))
     .catch(err => console.log("ERROR"));
 
