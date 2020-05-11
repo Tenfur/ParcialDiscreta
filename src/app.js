@@ -5,6 +5,7 @@ const morgan = require("morgan"); // Nos muestra en consola que ruta ha solicita
 const mongoose = require("mongoose"); //Nos ayuda a definir un esquema del documento y nos permite conoctarnos mongoDb
 const app = express(); 
 const http = require("http");
+http.createServer(app);
 const server = http.createServer(app);
 
 //Connecting to db
@@ -28,6 +29,6 @@ app.use(require("./routes/index"));
 app.use(require("./routes/index2"));
 
 //Starting the server
-app.listen(app.get("port"), () =>{ 
+server.listen(app.get("port"), () =>{ 
     console.log(`Server on port ${app.get("port")}`);
 })
