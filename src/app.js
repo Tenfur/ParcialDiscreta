@@ -4,6 +4,8 @@ const path = require("path"); //Me ayuda a concatenar las rutas de acuerdo al si
 const morgan = require("morgan"); // Nos muestra en consola que ruta ha solicitado el usuario
 const mongoose = require("mongoose"); //Nos ayuda a definir un esquema del documento y nos permite conoctarnos mongoDb
 const app = express(); 
+const http = require("http");
+const server = http.createServer(app);
 
 //Connecting to db
 mongoose.connect("mongodb://localhost/CRUD") 
