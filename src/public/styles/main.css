@@ -1,7 +1,16 @@
 .imagen{
     height: 50px;
     /* width: 30px; */
-    margin: 0 0 0 295px;
+    /* margin: 0 0 0 295px; */
+
+}
+.imagen2{
+    height: 50px;
+    /* width: 30px; */
+    margin: 0 0 30px 0;
+}
+body{
+    font-family: 'Press Start 2P', cursive;
 }
 .boton{
     width: 150px;
@@ -31,15 +40,21 @@
     text-align: center;
     width: 300px;
 }
+/* .botonS{
+    text-align: center;
+    width: 300px;
+    /* margin: 0 0 0 30px; */
 .boton4{
     display: flex;
     justify-content: center;
 }
 .presentacion{
     margin: 5px 0 5px 170px;
+    font-size: 15px;
 }
 .boton3{
     border-radius: 20px;
+    margin: 0 0 15px 0;
 }
 .imagenlogo{
     width: 450px;
@@ -55,6 +70,7 @@
 }
 .titulo{
     margin: 5px 0 0 0;
+    font-size: 20px;
 }
 
 .iguales{
@@ -70,4 +86,32 @@
 .voltear{
     display: flex;
     flex-direction: column-reverse;
+}
+.botonfinal{
+    /* width: 300px; */
+    /* border: 1px solid black; */
+    display: flex;
+    display: inline;
+    justify-content: center;
+}
+.boton5{
+    margin: 0 0 5px 0;
+}
+.linea{
+    margin: 0 0 0 300px;
+}
+.salvadora{
+    display: flex;
+}
+.centrar{
+    text-align: center;
+    /* border: 1px solid black; */
+    margin-left: 230px;
+}
+.letra{
+    margin: 5px 0 0 0;
+    /* padding-top: 0px; */
+}
+.titulofinal{
+    margin-left: 190px;
 }

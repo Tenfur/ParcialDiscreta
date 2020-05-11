@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
     <nav class ="navbar navbar-dark bg-dark mb-4">
-        <a href="/" class ="navbar-brand">Registro</a>
+        <a href="/" class ="navbar-brand">Criterios</a>
     </nav>    
     <div class="container">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <form action="/add" method ="POST" class ="mb-4">
                             <div class="form-group">
-                                <input type="text" name = "proyecto" placeholder="Ingrese proyecto" class ="form-control">
+                                <input type="text" name = "proyecto" placeholder="Nombre de criterio" class ="form-control">
                             </div>
                             <div class="form-group">
                                 <textarea name="criterio" cols="80" class ="form-control" placeholder="Ingrese indice de proyecto"></textarea>
@@ -21,43 +21,26 @@
                             <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
                             <a href="/ordenar" class ="btn btn-primary btn-block  mt-4 ">Ordenar Proyectos</a>
                         </form>
-                        <!-- <form action="/add2" method ="POST" class ="mb-4">
-                            <div class="form-group">
-                                <input type="text" name = "proyecto" placeholder="Ingrese proyecto" class ="form-control">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="criterio" cols="80" class ="form-control" placeholder="Ingrese indice de proyecto"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name = "porcentajeCriterio" placeholder="Ingrese porcentaje" class ="form-control">
-                            </div>
-                            <button type ="submit" class ="btn btn-primary btn-block">Agregar</button>
-                            <a href="/ordenar" class ="btn btn-primary btn-block  mt-4 ">Ordenar Proyectos</a>
-                        </form> -->
                     </div> <!-- Fin de card-body -->
                 </div> <!-- Fin de card -->
             </div> <!-- Fin de col-md-5 -->
 
             <!-- LIST -->
+            <% var arregloLetras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"] %>
             <div class="col-md-7">
-                <h1 class ="text-center">Proyectos</h1>
+                <h1 class ="text-center">Proyectos Registrados</h1>
                 <table class ="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th class ="text-center">Numero</th>
+                            <th class ="text-center">Letra</th>
                             <th class ="text-center">Proyecto</th>
-                            <th class ="text-center">Extras</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for(var i = 0; i < tasks.length; i++) { %>
+                        <% for (var j = 0; j < tasks2.length; j++) { %>
                             <tr>
-                                <td class ="text-center"><%= i + 1%></td>
-                                <td class ="text-center"><%=  tasks[i].proyecto %></td>
-                                <td class ="text-center" > 
-                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Eliminar</a>
-                                    <a href="/edit2/<%= tasks[i]._id %>" class ="btn btn-info">Editar</a>
-                                </td>
+                                <td class ="text-center"><%= arregloLetras[j]%></td>
+                                <td class ="text-center"><%=  tasks2[j].Nproyecto %></td>
                             </tr>
                         <% } %>
                     </tbody>
@@ -66,20 +49,22 @@
                 <table class ="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th class ="text-center">Numero</th>
-                            <th class ="text-center">Criterio</th>
-                            <th class ="text-center">Porcentaje del criterio</th>
-                            <th class ="text-center">Extras</th>
+                            <th class ="text-center"><p class ="mb-4">Numero</p></th>
+                            <th class ="text-center align-center"><p class ="mb-4">Nombre</p></th>
+                            <th class ="text-center"><p class ="mb-4">Criterio</p></th>
+                            <th class ="text-center"></p>Porcentaje del criterio</th>
+                            <th class ="text-center"><p class ="mb-4">Extras</p></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for(var i = 0; i < tasks.length; i++) { %>
                             <tr>
                                 <td class ="text-center"><%= i + 1%></td>
+                                <td class ="text-center"> <%= tasks[i].proyecto%></td>
                                 <td class ="text-center"><%=  tasks[i].criterio%></td>
                                 <td class ="text-center"><%=  tasks[i].porcentajeCriterio%></td>
                                 <td cols = ""> 
-                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger">Eliminar</a>
+                                    <a href="/delete/<%= tasks[i]._id%>" class ="btn btn-danger boton5">Eliminar</a>
                                     <a href="/edit/<%= tasks[i]._id %>" class ="btn btn-info">Editar</a>
                                 </td>
                             </tr>

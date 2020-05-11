@@ -16,10 +16,10 @@
                     </thead>
                     <% arregloAbecedario = ["A", "B","C", "D", "E", "F", "G", "H", "I", "J", "k", "L", "M", "N"] %>
                     <tbody>
-                        <% for(var i = 0; i < tasks.length; i++) { %>
+                        <% for(var i = 0; i < tasks2.length; i++) { %>
                             <tr>
                                 <td class ="text-center"><%= arregloAbecedario[i]%></td>
-                                <td class ="text-center"><%=  tasks[i].proyecto %></td>
+                                <td class ="text-center"><%=  tasks2[i].Nproyecto %></td>
                             </tr>
                         <% } %>
                     </tbody>
@@ -29,6 +29,7 @@
                     <thead>
                         <tr>
                             <th class ="text-center">Numero</th>
+                            <th class ="text-center">Nombre</th>
                             <th class ="text-center">Criterio</th>
                             <th class ="text-center">Porcentaje del criterio</th>
                         </tr>
@@ -37,6 +38,7 @@
                         <% for(var i = 0; i < tasks.length; i++) { %>
                             <tr>
                                 <td class ="text-center"><%= i + 1%></td>
+                                <td class ="text-center"> <%= tasks[i].proyecto %></td>
                                 <td class ="text-center"><%=  tasks[i].criterio%></td>
                                 <td class ="text-center"><%=  tasks[i].porcentajeCriterio%> <%= "%" %></td>
                             </tr>
@@ -88,9 +90,8 @@
                             <%var arreglodeValoresFinalesConLetras = [] %>
                             <%var arregloDeLetrasOrdenadas = [] %>
                             <%var arregloDeProyectos = [] %>
-
                         <!----------------------------------------PASO UNO--------------------------------------->
-                            <!-- <div class ="d-none"> -->
+                            <div class ="d-none">
                             <%= "Criterios multiplicados con los porcentajes: " %>
                             </br>  
                             <% for(var i = 0; i < tasks.length; ++i) { %>
@@ -106,23 +107,18 @@
                                     </br>
                             <% } %> <!--Final del primer FOR-->
                         <!----------------------------------------TERMINA EL PASO UNO---------------------------->
-
                         
                         <!----------------------------------------PASO DOS--------------------------------------->
                         <!-- Calculando el máximo de criterios-->
                             <%= "El mayor numero de criterios es: " %>
-
                             <% for(var i = 0; i < tasks.length; ++i) { %> 
                                 <% var aux = tasks[i].criterio.length %>
                                 <% arregloCriterios.push(aux) %>
                             <% } %> <!--Final del FOR que guarda todos los tamaños de los criterios en un  arreglo-->
-
                             <% arregloCriterios.sort((a,b) => a - b) %> <!--Ordena el arreglo  de menor a mayor-->
-
                             <% for(var i = 0; i < arregloCriterios.length; ++i) {  %>
                                 <% maximoCriterioNumero = arregloCriterios[i] %>
                             <% } %> <!-- Final del FOR que calcula el mayor criterio-->
-
                             <%= maximoCriterioNumero %>
                             <% for(var i = 0; i < tasks.length; ++i) { %>
                                 <% if(maximoCriterioNumero == tasks[i].criterio.length){ %>
@@ -130,14 +126,12 @@
                                 <%} %>
                             <% } %> <!-- En este FOR conseguimos al criterio con mayor numero de caracteres -->
                             </br>
-
                         <!----------------------------------------TERMINA EL PASO DOS---------------------------->
-
                         <!----------------------------------------PASO TRES-------------------------------------->
                                             
                             <%temp = maximoCriterio.split("") %> <!--Convertimos en un arreglo al criterio más largo -->
                                 <%= "Proyectos:" %>  <%= temp %> <!--Se iprime el arreglo-->
-                            <!-- </div> -->
+                            </div>
                             <% var auxiliar = 0 %> <!--La variable auxiliar que alamancera las sumas totales se le asigna 0-->
                             <% var auxiliar2 = 0 %>
                             <% for(var i = 0; i < temp.length; i++) { %>
@@ -156,26 +150,27 @@
                                     <% arregloDeValoresFinales.push(auxiliar)%>
                                     <% arreglodeValoresFinalesConLetras.push(auxiliar2) %>
                             <% } %> <!--Fin del FOR-->    
-
                     <!--------------------------------------------TERMINA EL PASO TRES--------------------------->
-
-
                     <!--------------------------------------------MOSTRAMOS DATOSS EN UNA TABLA--------------------->
-
-                    <h1 class ="text-center">Ordenamiento de los proyectos</h1>
-                    <div class ="d-none">
-                        <%= arregloDeValoresFinales %>
-                        </br>
-                        <% arregloDeValoresFinales.sort((a,b) => a - b) %>    <!--Se ordena el arreglo de valores finales de menor a mayor -->
+                    <!-- <h1 class ="text-center">Ordenamiento de los proyectos</h1> -->
+                    <!-- <div class ="d-none"> -->
+                        <!-- <%= arregloDeValoresFinales %> -->
+                        <!-- </br> -->
+                        <% var arregloDeValoresFinalesDesordenados = [] %>
+                        <% arregloDeValoresFinalesDesordenados = arregloDeValoresFinales %>
+                  
                         <% arregloDeValoresFinales.reverse() %>               <!-- Se invierte el arreglo -->
-                        <%= arregloDeValoresFinales%>       
-                        </br>
-                        <%= arreglodeValoresFinalesConLetras %>  
-                    </div>
+                        <!-- <%= arregloDeValoresFinales%>        -->
+                        <!-- </br> -->
+                        <!-- <%= arreglodeValoresFinalesConLetras %>   -->
+                    <!-- </div> -->
                     </br>        
-                    </br>
+                    <!-- </br> -->
                     <% var auxiliarSuprema %>
                     <% var auxi %>
+                    <!-- <%= arreglodeValoresFinalesConLetras %> -->
+                    <% var arregloNumerosLetrasOrdenados = [] %>
+                    <% var arregloLetrasOrdenadas2  = [] %>
                     <table class ="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -183,103 +178,181 @@
                                 <th class ="text-center">Importancia</th>
                             </tr>
                         </thead>
-                        <tbody>                 
-                                                       
-                            <% for(var i = 0; i < arreglodeValoresFinalesConLetras.length; i++) { %>             <!-- El arregloDeValoresFinales tiene 410 y el arregloDeValoresFinalesConletras tiene A410 -->                                                                                                                                    
-                                <% for(var j = 0; j < arreglodeValoresFinalesConLetras.length; j++){ %>         
-                                    <% var  aux1 = arreglodeValoresFinalesConLetras[i]  %>
-                                    <% var aux2 = arreglodeValoresFinalesConLetras[i] %> 
-                                    <% var  aux3 = arreglodeValoresFinalesConLetras[j]  %>
-                                    <% var aux4 = arreglodeValoresFinalesConLetras[j] %> 
-                                    <% auxiliarSuprema = arreglodeValoresFinalesConLetras[i].length %>    <!--Tamaño del valor I-->                <!-- Conseguimos el tamaño del elemento que corresponde al arregloDeValoresFinalesConLetras -->
-                                    <% auxiliarSuprema2 = arreglodeValoresFinalesConLetras[j].length %> <!--Tamaño del valor J-->
-                                    <% aux1 = aux1.slice(0,1) %> <!--La letra   del valor I--> 
-                                    <% aux3 = aux3.slice(0,1) %> <!--La letra del valor J-->
-                                    <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--El numero de I-->
-                                    <% aux4 = aux4.slice(1, auxiliarSuprema2) %> <!--El numero de J-->
-                                    <% auxI = parseInt(aux2) %> <!--Convrtimos en numero al valor de I-->
-                                    <% auxJ = parseInt(aux4) %> <!--Convertimos en numero al valor de J-->
-                                    <% if (auxJ == arregloDeValoresFinales[i]){ %> <!--Si el numero obtenido es igual al primer numero, se imprimirá la letra que le corresponde  -->
-                                        <% if(aux1 == aux3){ %>
-                                          <%auxi = aux %> <!-- Se asigna la letra a la variable auxi -->
-                                          <%arregloDeLetrasOrdenadas.push(aux1) %>
-                                        <% } %>
-                                    <% } %> <!-- Final del condicional-->
-                                 <% } %>
-                                <tr>
-                                    <td class ="text-center"><%= aux1 %></td> <!-- Se imprime la letra-->
-                                    <td class ="text-center"><%= arregloDeValoresFinales[i] %></td>
-                                </tr>
-                            <% } %>
-    
-                        </tbody>
-                    </table>   
                    
+                        <!-- <%= arreglodeValoresFinalesConLetras %> -->
+                        <tbody>         
+                            <!-- <%= arregloDeValoresFinales %> </br> -->
+                            <% var cont2 = 0 %>        
+                            <%for (var i =  0; i < arregloDeValoresFinales.length; i++){ %>
+                                <% for(var j =  i +1; j < arregloDeValoresFinales.length; j++){ %>
+                                         <% if (i == arregloDeValoresFinales.length){ %>
+                                                 <% break %>
+                                          <%}else if(arregloDeValoresFinales[i] == arregloDeValoresFinales[j]){ %>
+                                                <% cont2 = cont2 + 1 %>
+                                           <% } %>
+                                            
+                                <%} %>
+                            <% } %>
+                            <!-- <%= cont2 %> -->
+                           
+                            <% if (cont2 > 0){ %>
+                                        <% var arregloLetras = [] %>
+                                    <% var arregloNumeros = [] %>
+                
+                                    <% for ( var i = 0; i < arreglodeValoresFinalesConLetras.length; i++){ %>
+                                        <% var Tam = arreglodeValoresFinalesConLetras[i].length %>
+                                        <% var aux2 = arreglodeValoresFinalesConLetras[i] %>
+                                        <% var aux3 = arreglodeValoresFinalesConLetras[i] %>
+                                        <% aux2 = aux2.slice(0,1) %>
+                                        <%aux3 = aux3.slice(1,Tam) %> <!--Obtenemos el numero-->
+                                        <% arregloLetras.push(aux2) %>
+                                        <% arregloNumeros.push(aux3) %>
+                                    <%} %>
+                
+                                    <% var tempLetra %>
+                                    <% var tempNumero %>
+                                    <% for ( var i = 1; i < arregloLetras.length; i++){ %>
+                                        <% for (var j = 0; j < arregloLetras.length - 1; j++){ %>
+                                            <% if (arregloNumeros[i] > arregloNumeros[j]){ %>
+                                                <% tempNumero = arregloNumeros[i] %>
+                                                <% arregloNumeros[i] = arregloNumeros[j ] %>
+                                                <% arregloNumeros[j ] = tempNumero %>
+                                                <% tempLetra = arregloLetras[i]  %>
+                                                <% arregloLetras[i] = arregloLetras[j] %>
+                                                <% arregloLetras[j] = tempLetra %>
+                                                <% var guardar =  arregloLetras[j ] + arregloNumeros[j ] %>
+                                                <% arregloLetrasOrdenadas2.push(guardar) %>
+                                            <%} %>
+                                        <%} %>  
+                                    <%} %>
+                                <!-- <%= arreglodeValoresFinalesConLetras %>
+                                    <%= "Resultado final:" %>
+                                    <%= arregloNumeros %>
+                                    <%= arregloLetras %> -->
+                                    <% var auxConcatenado %>
+                                    <% arregloConcatenado = [] %>
+                                    <% for (var i = 0; i < arregloNumeros.length; i++) { %>
+                                        <% auxConcatenado = arregloLetras[i] + arregloNumeros[i] %> 
+                                        <% arregloConcatenado.push(auxConcatenado) %>
+                                    <%} %>
+                                    <!-- <%= "Final: " %>
+                                    <%= arregloConcatenado %>
+                            -->
+              
+                            <%} else if (cont2 == 0) { %>
+                                <% var arregloLetras = [] %>
+                                <% for (var i = 0; i < arreglodeValoresFinalesConLetras.length; i++){ %>
+                                    <% var auxiliar = 0 %>
+                                    <% var final = 0 %>
+                                    <% for (var j = 0; j < arreglodeValoresFinalesConLetras.length; j++) { %>
+                                        <% auxiliar = arregloDeValoresFinales[i]%> <!--Guardamos el numero-->
+                                        <% var numeroLetra = auxiliar.toString() %> <!--Convertimos en string al numero "430"-->
+                                        <% var aux = arreglodeValoresFinalesConLetras[j] %> <!-- A430  D430-->
+                                        <% aux = aux.slice(0,1) %> <!--Tenemos la letra de J-->
+                                        <% if (arreglodeValoresFinalesConLetras[j].includes(numeroLetra)){ %> <!--Vemos si 340 está incluido en A430-->
+                                            <% final = aux%>
+                                            <%arregloLetras.push(final) %>
+                                            <%break%>
+                                        <%} %>
+                                    <% } %>
+                                <% } %>
+            
+                                <% arregloDeValoresFinales.sort((a,b) => a - b) %>    <!--Se ordena el arreglo de valores finales de menor a mayor -->
+                                <% arregloDeValoresFinales.reverse() %>
+                                <% arregloNumeros = arregloDeValoresFinales %>
+                                <% arregloLetras.reverse() %>
+
+                                <% var auxConcatenado %>
+                                    <% arregloConcatenado = [] %>
+                                    <% for (var i = 0; i < arregloNumeros.length; i++) { %>
+                                        <% auxConcatenado = arregloLetras[i] + arregloNumeros[i] %> 
+                                        <% arregloConcatenado.push(auxConcatenado) %>
+                                    <%} %>
+                            <%} %>
+
+                                                       
+                            
+                        </tbody>
+                        <% for (var i = 0; i < arregloDeValoresFinales.length; i++){ %>
+                            <tr>
+                                <td class ="text-center"><%= arregloLetras[i] %></td> <!-- Se imprime la letra-->
+                                <td class ="text-center"><%= arregloNumeros[i] %></td>
+                            </tr>
+                        <% } %>
+                        <tbody>
+
+                        </tbody>
+                    </table>  
+
+                        <!-- <%= arreglodeValoresFinalesConLetras %>
+                        <%= arregloLetras %> </br>
+                       <%= arregloNumeros %>
+                       <%= arregloConcatenado %>
+                    -->
                 </p>
                 
             </div> <!-- Fin de col-md-7 -->
    
-             <%arregloDeLetrasOrdenadas.reverse() %>
+           <!--- <%= arregloDeValoresFinales %> -->
+           <!-- <%= arregloDeLetrasOrdenadas %> -->
             <!-- DIAGRAMA DE HASSE -->
+            <% arregloDeLetrasOrdenadas.reverse() %>
             <% var num = arregloDeLetrasOrdenadas.length - 1 %>
             <% var ultimoAux = num %>
             <div class="col-md-7">  
-   
-        
-            <h1 class ="text-center">Diagrama de Hasse</h1> 
-                <% for (var i = 0; i < arregloDeLetrasOrdenadas.length; i++) { %>
-                    <%var ultimoComparado %>
-                        <% for(var j = i; j < arregloDeLetrasOrdenadas.length; j++) { %>
-                            <% if (arregloDeValoresFinales[i] == arregloDeValoresFinales[j]) { %>
-                                <h1 class ="text-center mb-0 "> <%= arregloDeLetrasOrdenadas[j] %></h1>
-                                <% ultimoComparado = j %>
-                            <%} %>
-                        <%} %>
-                    <% i = ultimoComparado %>
-                    <% if(ultimoAux != i) { %>
-                        <img src="/images/linea.png" class ="imagen">
-                <% } %>
-               <% } %>
+            <h1 class ="text-center titulofinal">Diagrama de Hasse</h1> 
+            <% var salvadora = arreglodeValoresFinalesConLetras.length - 1%>
+            <div class ="centrar">
+                <% for(var i = 0; i < arregloConcatenado.length; i++){ %>
+                    <% var aux1= 0  %>
+                    <% var aux2 = 0  %>
+                    <% var aux3 = 0  %>
+                    <% var aux4 = 0  %>
+                    <% var auxI = 0 %>
+                    <% var auxJ = 0 %>
+                    <% for (var j = i +1; j < arregloConcatenado.length; j++){ %>
+                        <%   aux1 = arregloConcatenado[i]  %> <!-- I-->
+                        <%  aux2 = arregloConcatenado[i] %>  <!-- I-->
+                        <%   aux3 = arregloConcatenado[j]  %> <!--J-->
+                        <%  aux4 = arregloConcatenado[j] %> <!--J-->
+                        <% auxiliarSuprema = arregloConcatenado[i].length %>  <!--Tamaño del valor I-->                <!-- Conseguimos el tamaño del elemento que corresponde al arregloDeValoresFinalesConLetras -->
+                        <% auxiliarSuprema2 = arregloConcatenado[j].length %> <!--Tamaño del valor J-->
+                        <% aux1 = aux1.slice(0,1) %> <!--La letra del valor I--> 
+                        <% aux3 = aux3.slice(0,1) %> <!--La letra del valor J--> 
+                        <% aux2 = aux2.slice(1, auxiliarSuprema) %> <!--El numero de I--> 
+                        <% aux4 = aux4.slice(1, auxiliarSuprema2) %> <!--El numero de J--> 
+                        <% auxI = parseInt(aux2) %> <!--Convrtimos en numero al valor de I-->
+                        <% auxJ = parseInt(aux4) %> <!--Convertimos en numero al valor de J--> 
+                            <% if (auxJ == auxI) { %> <!-- Comparamos los valores finales-->
+                            <h1 class ="text-center d-inline letra"><%= aux1 %></h1>
+                            <!-- <img src="images/lineaH.png" class ="imagen2"> -->
+                            <% if(j == salvadora)  { %>
+                                <h1 class ="text-center d-inline letra"><%= aux3 %></h1>
+                            <% } %>
+                            <%break %>
+                            <% } else if(auxJ != auxI) { %> <!--Fin del primer IF-->
+                                <h1 class ="text-center d-block letra"><%=aux1 %></h1>
+                                <img src="images/linea.png" class ="imagen text-center">
+                                </br>   
+                                <% if (j == salvadora){ %>
+                                    <h1 class ="text-center d-inline letra"><%= aux3 %></h1>
+                                <%} %>
+                                <%break%>
+                            <% } %> <!-- Fin del else-->
+                        <% } %> <!--Fin del segundo FOR-->
+                    <%} %> <!--FIn del primer FOR-->
+            </div>
+                
 
-               <!-- for (int i = 0; i < proyectofinal.size(); i++) {                                                       
-                int ultimo_comparado;
-                for (int j = i; j < proyectofinal.size(); j++) {
-                    if (proyectofinal[i].Getpeso_puntaje() == proyectofinal[j].Getpeso_puntaje()) {
-                        cout << proyectofinal[j].GetNombre();
-                        ultimo_comparado = j;
-                    }
-                }
-                cout << endl;
-                i = ultimo_comparado;
-                if (i != proyectofinal.size() - 1) {
-                    cout << "|" << endl;
-                }
-            } -->
-                    <!-- [7:32 p. m., 8/5/2020] Juan De Dios: El for de i recorre el arreglo de proyectos
-            [7:32 p. m., 8/5/2020] Juan De Dios: Cuando es 0 seria A por ejemplo
-            [7:32 p. m., 8/5/2020] Juan De Dios: El de j también recorre ese mismo arreglo
-        [7:32 p. m., 8/5/2020] Juan De Dios: Y si el i y el de j son iguales
-        [7:32 p. m., 8/5/2020] Juan De Dios: Me los imprime en la misma línea
-        [7:33 p. m., 8/5/2020] Juan De Dios: Y guarda la posición del último elemento igual
-        [7:33 p. m., 8/5/2020] Juan De Dios: Luego esa posición la asigna a i
-        [7:34 p. m., 8/5/2020] Juan De Dios: Para que empeze en el último elemento que fue igual
-        [7:34 p. m., 8/5/2020] Juan De Dios: Empiece* -->
 
-
-
-
-            
-
-            
-               
-
-               
-
+    
                 <% } %>
                 <!-- <a href="/index" class ="btn btn-primary btn-block mb-4">Regresar</a> -->
                 <script src = "javascript/main.js"></script>
             </div>
         </div> <!-- Fin de row -->
     </div> <!--Fin de container-->
-    <a href="/index" class ="btn btn-primary boton2">Regresar</a>
+    <div class="botonfinal">
+        <a href="/index" class ="btn btn-primary boton2">Regresar</a>
+    </div>
 <%- include("partials/footer.ejs") %>

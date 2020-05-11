@@ -10,11 +10,8 @@ mongoose.connect("mongodb://localhost/CRUD")
     .then(db => console.log("DB CONNECTED"))
     .catch(err => console.log("ERROR"));
 
-//Importing routes
-const indexRoutes = require("./routes/index") //Llamamos la ruta que el usuario selecciona
-
 //Settings
-app.set("port", 3000);
+app.set("port", process.env.PORT ||  3000);
 app.set("views", path.join(__dirname, "views")); 
 app.set("view engine", "ejs");
 
@@ -25,7 +22,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 //Routes
-app.use("/", indexRoutes); //Usamos la ruta importada
+app.use(require("./routes/index"));
+app.use(require("./routes/index2"));
 
 //Starting the server
 app.listen(app.get("port"), () =>{ 

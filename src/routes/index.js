@@ -1,13 +1,11 @@
 const express = require("express"); //Importamos el módulo express para hacer uso de su función Router
 const router = express.Router(); //Al llamar al módulo exprees, nos retorna un objeto. Por lo tanto, utilizamos el método Router para poder utilizar las rutas
 const Task = require("../models/task"); //Importamos la colección tasks que tiene los nombres de los proyectos
-// const Task2 = require("../models/task2");
+const Task2 = require('../models/proyectos.js'); //Importamos la colección tasks que tiene los nombres de los proyectos
 
-//Trabajamos con la colección de proyectos 
 
 router.get("/", async (req, res) =>{ //Esta ruta llama a la página principal, que sería el index.ejs
     const tasks = await  Task.find();
-    // const tasks2 = await Task2.find();
     res.render("presentacion",{
         tasks
     });
@@ -21,17 +19,17 @@ router.post("/add", async (req, res) =>{  //Esta ruta sube los nuevos datos ingr
 
 router.get("/ordenar", async(req, res)=>{ //Esta ruta llamada a la página ordenamiento, que sería el ordenamiento.ejs
     const tasks = await  Task.find();
-    // const tasks2 = await Task2.find();
+    const tasks2 = await  Task2.find();
     res.render("ordenamiento",{
-        tasks
+        tasks, tasks2
     });
 });
 
 router.get("/index", async(req, res)=>{ //Esta ruta llamada a la página ordenamiento, que sería el ordenamiento.ejs
     const tasks = await  Task.find();
-    // const tasks2 = await Task2.find();
+    const tasks2 = await  Task2.find();
     res.render("index",{
-        tasks
+        tasks, tasks2
     });
 });
 
@@ -69,6 +67,5 @@ router.get("/delete/:id", async (req,res) =>{ //Elimina el elemento seleccionado
     await Task.remove({_id: id});
     res.redirect("/index");
 });
-
 
 module.exports = router; //Exportamos la ruta seleccionado y la envíamos al app.js

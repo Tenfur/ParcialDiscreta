@@ -1,0 +1,48 @@
+
+                <%- include("partials/header.ejs") %>
+                <nav class ="navbar navbar-dark bg-dark mb-4">
+                    <a href="/" class ="navbar-brand">Proyectos</a>
+                </nav>   
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="/add2" method ="POST" class ="mb-4">
+                                            <div class="form-group">
+                                                <input type="text" name = "Nproyecto" placeholder="Nombre de proyecto" class ="form-control">
+                                                <button type ="submit" class ="btn btn-primary btn-block mt-4">Agregar</button>
+                                                <a href="/" class ="btn btn-primary btn-block  mt-4 ">Regresar</a>
+                                            </div>
+                                        </form>
+                                    </div> <!-- Fin de card-body -->
+                                </div> <!-- Fin de card -->
+                            </div> <!-- Fin de col-md-5 -->
+                        <% var arregloLetras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O"] %>
+                        <div class="col-md-7">
+                            <h1 class ="text-center">Proyectos</h1>
+                            <table class ="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class ="text-center">Numero</th>
+                                        <th class ="text-center">Proyecto</th>
+                                        <th class ="text-center">Extras</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i = 0; i < tasks2.length; i++) { %>
+                                        <tr>
+                                            <td class ="text-center"><%= arregloLetras[i]%></td>
+                                            <td class ="text-center"><%=  tasks2[i].Nproyecto %></td>
+                                            <td>
+                                                <a href="/delete2/<%= tasks2[i]._id %>" class ="btn btn-danger">Eliminar</a>
+                                                <a href="/editP/<%= tasks2[i]._id %>" class ="btn btn-info">Editar</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+<% include("partials/header.ejs") %>
