@@ -5,6 +5,10 @@ const morgan = require("morgan"); // Nos muestra en consola que ruta ha solicita
 const mongoose = require("mongoose"); //Nos ayuda a definir un esquema del documento y nos permite conoctarnos mongoDb
 const app = express(); 
 const http = require("http");
+const dotenv = require("dotenv");
+
+dotenv.config()
+
 http.createServer(app);
 const server = http.createServer(app);
 
